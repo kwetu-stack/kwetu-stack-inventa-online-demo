@@ -1,0 +1,98 @@
+<style>
+  /* Kwetu dark navy topbar (self-contained for this file) */
+  :root{
+    --top-a:#0f172a; --top-b:#1e293b;
+    --accent:#38bdf8; --text:#E2E8F0; --border:#1f2937;
+  }
+
+  .navbar {
+    background: linear-gradient(90deg, var(--top-a), var(--top-b));
+    color: var(--text);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand {
+    font-weight: 800;
+    letter-spacing: .3px;
+  }
+  .brand sup { font-size: .7em; color: var(--accent); }
+
+  .navbar a {
+    color: var(--text);
+    text-decoration: none;
+    margin: 8px 12px;
+    font-weight: 700;
+  }
+  .navbar a:hover { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+  }
+  .nav-toggle:hover { border-color: var(--border); }
+  .nav-toggle span {
+    background: var(--text);
+    height: 3px;
+    width: 25px;
+  }
+
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    background: linear-gradient(90deg, var(--top-a), var(--top-b));
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-mobile a { margin: 10px 0; }
+
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+    .nav-mobile.show { display: flex; }
+  }
+</style>
+
+<div class="navbar">
+  <div class="brand">Inventa<sup>™</sup></div>
+
+  <div class="nav-toggle" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="nav-links">
+    <a href="/{{ tenant }}/dashboard">Dashboard</a>
+    <a href="/{{ tenant }}/add-stock">Add Stock</a>
+    <a href="/{{ tenant }}/products">View Products</a>
+    <a href="/{{ tenant }}/record-sale">Record Sale</a>
+    <a href="/{{ tenant }}/sales-history">Sales History</a>
+  </div>
+</div>
+
+<div id="mobileNav" class="nav-mobile">
+  <a href="/{{ tenant }}/dashboard">Dashboard</a>
+  <a href="/{{ tenant }}/add-stock">Add Stock</a>
+  <a href="/{{ tenant }}/products">View Products</a>
+  <a href="/{{ tenant }}/record-sale">Record Sale</a>
+  <a href="/{{ tenant }}/sales-history">Sales History</a>
+</div>
+
+<script>
+  function toggleNav() {
+    const nav = document.getElementById('mobileNav');
+    nav.classList.toggle('show');
+  }
+</script>

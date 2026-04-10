@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sales History - {{ tenant | capitalize }} | Inventa™</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <style>
+    :root{
+      --top-a:#0f172a; --top-b:#1e293b;
+      --accent:#38bdf8;
+      --text:#E2E8F0; --muted:#94A3B8;
+      --surface:#0b1220; --surface2:#0f1b2d;
+      --border:#1f2937;
+      --radius:16px;
+      --shadow-soft:0 6px 20px rgba(0,0,0,.18);
+    }
+
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue";
+      background: linear-gradient(180deg, var(--surface) 0%, var(--surface2) 100%);
+      color: var(--text);
+    }
+
+    /* Navbar */
+    .navbar{
+      background: linear-gradient(90deg, var(--top-a), var(--top-b));
+      padding:10px 20px;
+      display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;
+      color:var(--text);
+      border-bottom:1px solid var(--border);
+    }
+    .navbar a{
+      color:var(--text); text-decoration:none; margin:8px 12px; font-weight:700;
+    }
+    .navbar a:hover{ color:var(--accent); }
+
+    .nav-links{ display:flex; flex-wrap:wrap; }
+    .demo-pill{
+      margin:8px 12px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(56, 189, 248, 0.16);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color:#bae6fd;
+      font-size:.88rem;
+      font-weight:800;
+    }
+    .nav-toggle{ display:none; flex-direction:column; cursor:pointer; gap:4px; }
+    .nav-toggle span{ background:var(--text); height:3px; width:25px; }
+    .nav-mobile{
+      display:none; flex-direction:column;
+      background: linear-gradient(90deg, var(--top-a), var(--top-b));
+      padding:10px 20px; border-bottom:1px solid var(--border);
+    }
+    .nav-mobile a{ margin:10px 0; color:var(--text); font-weight:700; text-decoration:none; }
+    .nav-mobile .demo-pill { margin: 10px 0 0; text-align: center; }
+
+    @media (max-width:700px){
+      .nav-links{ display:none; }
+      .nav-toggle{ display:flex; }
+      .nav-mobile.show{ display:flex; }
+    }
+
+    /* Content */
+    .container{ width:min(1180px, 92vw); margin:0 auto; padding:20px; }
+    h2{
+      text-align:center; margin-bottom:20px; font-weight:800; color:var(--text);
+    }
+
+    table{
+      width:100%;
+      border-collapse:separate; border-spacing:0;
+      background:var(--surface2);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow-soft);
+    }
+    th, td{ padding:12px 15px; text-align:left; border-bottom:1px solid var(--border); }
+    th{ background:#0d1a2b; color:var(--muted); font-weight:700; }
+    tr:last-child td{ border-bottom:0; }
+    tr:hover td{ background:#0d1a2b; }
+
+    .download-link{
+      color:var(--accent); text-decoration:none; font-weight:800;
+    }
+    .download-link:hover{ text-decoration:underline; }
+
+    footer{
+      text-align:center; padding:16px 0 22px; color:var(--muted);
+      border-top:1px solid var(--border); margin-top:30px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div><strong>Inventa™</strong></div>
+  <div class="nav-toggle" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-links">
+    <a href="/{{ tenant }}/dashboard">Dashboard</a>
+    <a href="/{{ tenant }}/add-stock">Add Stock</a>
+    <a href="/{{ tenant }}/products">View Products</a>
+    <a href="/{{ tenant }}/record-sale">Record Sale</a>
+    <a href="/{{ tenant }}/sales-history">Sales History</a>
+    <a href="/{{ tenant }}/inventory-tools">Inventory Tools</a>
+    <div class="demo-pill">Demo Mode: changes are not saved</div>
+  </div>
+</div>
+
+<div id="mobileNav" class="nav-mobile">
+  <a href="/{{ tenant }}/dashboard">Dashboard</a>
+  <a href="/{{ tenant }}/add-stock">Add Stock</a>
+  <a href="/{{ tenant }}/products">View Products</a>
+  <a href="/{{ tenant }}/record-sale">Record Sale</a>
+  <a href="/{{ tenant }}/sales-history">Sales History</a>
+  <a href="/{{ tenant }}/inventory-tools">Inventory Tools</a>
+  <div class="demo-pill">Demo Mode: changes are not saved</div>
+</div>
+
+<div class="container">
+  <h2>Sales History</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Customer</th>
+        <th>Total (KES)</th>
+        <th>VAT (KES)</th>
+        <th>Grand Total (KES)</th>
+        <th>Invoice</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sale in sales %}
+      <tr>
+        <td>{{ sale['date'] }}</td>
+        <td>{{ sale['customer'] }}</td>
+        <td>{{ '{:,.2f}'.format(sale['total_amount']) }}</td>
+        <td>{{ '{:,.2f}'.format(sale['vat']) }}</td>
+        <td>{{ '{:,.2f}'.format(sale['grand_total']) }}</td>
+        <td><a class="download-link" href="{{ url_for('download_invoice', tenant=tenant, sale_id=sale['id']) }}">Download</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<footer>
+  Powered by Kwetu Partners Ltd
+</footer>
+
+<script>
+  function toggleNav() {
+    document.getElementById('mobileNav').classList.toggle('show');
+  }
+</script>
+
+</body>
+</html>
