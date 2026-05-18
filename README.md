@@ -104,14 +104,12 @@ Inventa™ follows a modular Flask-based architecture designed for simplicity, m
 ### Dashboard
 ![Dashboard](screenshots/dashboard.png)
 
-### Inventory Management
+### Inventory 
 ![Inventory](screenshots/inventory.png)
 
-### Sales Processing
-![Sales](screenshots/sales.png)
 
-### Invoice Generation
-![Invoice](screenshots/invoice.png)
+### Inventory Tools
+![Inventory Tools](screenshots/inventory-tools.png)
 
 ---
 
