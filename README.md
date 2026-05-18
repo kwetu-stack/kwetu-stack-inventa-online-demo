@@ -1,59 +1,139 @@
 # Inventa™ — Multi-Tenant Inventory & Sales SaaS
 
-Inventa™ is a production-ready inventory and sales management system built to handle real-world business operations across multiple tenants.
+Inventa™ is a production-ready inventory and sales management platform designed to handle real-world business operations across multiple tenants.
 
-Designed for SMEs, the platform enables efficient stock control, sales tracking, and invoice generation in a scalable, structured environment.
+Built by Kwetu Partners Ltd, the system focuses on operational simplicity, stock visibility, structured workflows, and scalable SME business management.
 
 ---
 
 ## 🚀 Overview
 
-Inventa™ provides a complete workflow for managing inventory and sales operations:
+Inventa™ provides a complete workflow for managing inventory and sales operations in a structured and scalable environment.
 
-* Real-time inventory tracking
-* Multi-item sales recording with VAT calculations
-* Automated invoice generation (PDF + QR Code)
-* Bulk stock management via Excel import
-* Multi-tenant architecture for business separation
+The platform supports:
 
-This version represents a stable foundation for scalable SaaS deployment.
+- Real-time inventory tracking
+- Multi-item sales processing
+- Automated invoice generation
+- Bulk stock management
+- Business-level tenant separation
+- Operational reporting and analytics
+
+This project represents Kwetu Partners' practical engineering philosophy:
+build reliable systems that solve real operational problems without unnecessary complexity.
+
+---
+
+# Why Inventa Exists
+
+Inventa™ was born from firsthand operational experience inside the FMCG distribution industry in Kenya.
+
+After decades of observing stock losses, manual ledger inefficiencies, delayed reporting, fragmented sales workflows, and operational waste, Kwetu Partners began building practical software systems focused on clarity, reliability, and efficiency.
+
+Rather than chasing unnecessary enterprise complexity, Inventa™ follows a Monozukuri-inspired engineering philosophy:
+
+- Reduce operational waste
+- Simplify business workflows
+- Improve stock visibility
+- Increase reporting accuracy
+- Build reliable systems for real SMEs
+
+The goal is simple:
+
+Provide practical and affordable operational software for businesses that need structure, accountability, and growth without expensive enterprise overhead.
 
 ---
 
 ## 🧠 Core Features
 
-* **Multi-Tenant Architecture** (supports multiple business environments)
-* **Dashboard Analytics** (sales trends, top products, stock overview)
-* **Inventory Management** (real-time stock visibility and updates)
-* **Sales Processing** (multi-item transactions with automatic calculations)
-* **Invoice System** (PDF invoices with embedded QR codes)
-* **Sales History Tracking** (full audit trail with downloadable invoices)
-* **Bulk Stock Upload** (Excel-based inventory updates)
-* **Mobile-Responsive Interface**
-* **Production-Oriented Design**
+### Multi-Tenant Architecture
+Supports multiple business environments with isolated operational data.
+
+### Dashboard Analytics
+Provides sales trends, stock summaries, and operational visibility.
+
+### Inventory Management
+Real-time inventory updates with structured stock control workflows.
+
+### Sales Processing
+Supports multi-item transactions with automatic totals and VAT calculations.
+
+### Invoice System
+Generates professional PDF invoices with embedded QR codes.
+
+### Sales History Tracking
+Maintains full transaction history with downloadable invoice records.
+
+### Bulk Stock Upload
+Allows Excel-based inventory imports for faster onboarding and updates.
+
+### Mobile-Responsive Interface
+Optimized for desktop and mobile operational use.
+
+### Production-Oriented Design
+Structured for scalable deployment and future SaaS expansion.
+
+---
+
+## 🏗️ System Architecture
+
+Inventa™ follows a modular Flask-based architecture designed for simplicity, maintainability, and operational reliability.
+
+### Frontend
+- HTML
+- CSS
+- Responsive UI Design
+
+### Backend
+- Python
+- Flask Framework
+
+### Database
+- SQLite (development environment)
+- PostgreSQL-ready architecture for production scaling
+
+### Reporting & Utilities
+- PDF Invoice Engine
+- QR Code Generation
+- Analytics Visualization Modules
+
+---
+
+## 📸 Screenshots
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Inventory Management
+![Inventory](screenshots/inventory.png)
+
+### Sales Processing
+![Sales](screenshots/sales.png)
+
+### Invoice Generation
+![Invoice](screenshots/invoice.png)
 
 ---
 
 ## 🛠️ Tech Stack
 
-**Backend**
+### Backend
+- Python
+- Flask
 
-* Python (Flask)
+### Frontend
+- HTML
+- CSS
 
-**Frontend**
+### Database
+- SQLite
 
-* HTML, CSS (responsive UI)
-
-**Database**
-
-* SQLite (local development)
-
-**Libraries**
-
-* Flask
-* Matplotlib (analytics visualization)
-* QRCode (invoice encoding)
-* pdfkit (advanced PDF generation)
+### Libraries
+- Flask
+- Pandas
+- Matplotlib
+- QRCode
+- pdfkit
 
 ---
 
@@ -64,94 +144,87 @@ This version represents a stable foundation for scalable SaaS deployment.
 ```bash
 git clone https://github.com/kwetu-stack/inventa-online-version.git
 cd inventa-online-version
-```
-
-### 2. Create Virtual Environment (Windows)
-
-```bash
+2. Create Virtual Environment (Windows)
 python -m venv venv
 venv\Scripts\activate
-```
-
-*(Mac/Linux: `source venv/bin/activate`)*
-
-### 3. Install Requirements
-
-```bash
-pip install flask qrcode matplotlib pandas pdfkit
-```
-
-### 4. Run Application
-
-```bash
+Mac / Linux
+source venv/bin/activate
+3. Install Requirements
+pip install flask pandas matplotlib qrcode pdfkit
+4. Run Application
 python app.py
-```
-
-### 5. Access System
-
-```
+5. Access System
 http://127.0.0.1:5000
-```
+💼 Usage
+Dashboard
 
----
+Monitor sales performance, stock movement, and operational summaries.
 
-## 💼 Usage
+Inventory Tools
 
-* **Dashboard** → Monitor sales performance and stock levels
-* **Inventory Tools** → Import/export stock using Excel
-* **Add Stock** → Update inventory quantities
-* **Record Sales** → Process transactions and generate invoices
-* **Sales History** → Track and download past invoices
+Import or manage inventory using Excel-based workflows.
 
----
+Add Stock
 
-## 📈 Roadmap
+Update product quantities and maintain stock visibility.
 
-* **v1.1** → User authentication & role-based access
-* **v2.0** → Full online multi-tenant SaaS deployment
-* **v2.1** → Client onboarding + billing system
+Record Sales
 
----
+Process transactions and automatically generate invoices.
 
-## Railway Deployment
+Sales History
 
-This repo now includes a `Procfile` for Railway:
+Review past sales transactions and download invoice records.
 
-```bash
-web: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 120
-```
+🌐 Live Demo
 
-Recommended Railway variables:
+Public Demo:
+https://kwetupartners.net/live-demo.html
 
-```bash
-SECRET_KEY=your-strong-secret
-DEMO_MODE=true
-```
+The live demo allows users to interact with the system in a sandbox environment without authentication barriers.
 
-Important:
+📈 Roadmap
+v1.1
+User authentication
+Role-based access control
+Improved tenant administration
+v2.0
+Full cloud SaaS deployment
+PostgreSQL production infrastructure
+Centralized tenant management
+v2.1
+Client onboarding workflows
+Subscription billing system
+Tenant usage controls
+Future Vision
+AI-assisted reporting insights
+Advanced analytics
+Multi-branch operational management
+Integrated mobile companion tools
+🏢 About Kwetu Partners
 
-* The app currently uses SQLite (`inventory.db`), so Railway should be treated as a demo host unless you move persistence to a managed database or mounted volume.
-* With `DEMO_MODE=true`, visitors can access the app without login and all save actions are blocked to preserve the demo data.
+Kwetu Partners Ltd is a Kenyan software engineering company focused on practical operational systems for SMEs.
 
----
+The company combines real-world operational experience with modern software engineering to build reliable, affordable business platforms across:
 
-## 👤 Author
+Inventory Management
+Logistics & Dispatch
+visitor & reception management system
+Construction Management
+Education Technology
+Identity & Access Systems
 
-**Bundi Murithi**
-Founder & Software Engineer
-Kwetu Partners Ltd
+Kwetu follows a Monozukuri-inspired engineering philosophy centered on craftsmanship, operational clarity, and long-term system reliability.
 
----
+Website:
+https://kwetupartners.net/
 
-## 📄 License
+📄 License
 
 MIT License — Free to use, modify, and distribute.
 
----
+🌍 Built in Kenya
 
-## 🌐 Powered by
+Designed and engineered by Kwetu Partners Ltd.
 
-Kwetu Partners Ltd
-https://kwetupartners.net/
-
-
+Built with a focus on solving real operational challenges faced by SMEs across emerging markets.
